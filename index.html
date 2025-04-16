@@ -14,7 +14,7 @@
         .keyboard-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
@@ -25,6 +25,7 @@
         h2 {
             margin-bottom: 20px;
             color: #333;
+            align-self: center;
         }
         .keyboard-row {
             display: flex;
@@ -34,6 +35,7 @@
         .keyboard-section {
             display: flex;
             flex-direction: row;
+            align-self: center;
         }
         .main-keyboard {
             display: flex;
@@ -109,6 +111,9 @@
         .numpad {
             margin-left: 20px;
         }
+        .numpad-row {
+            display: flex;
+        }
         .numpad-section {
             display: flex;
         }
@@ -129,6 +134,7 @@
             width: 100%;
             min-height: 50px;
             color: #333;
+            align-self: center;
         }
         .placeholder-text {
             color: #777;
@@ -139,17 +145,20 @@
     <div class="keyboard-container">
         <h2>Interaktive Tastaturbelegung</h2>
         
-        <!-- Funktionstasten -->
-        <div class="keyboard-row">
+        <!-- Funktionstasten mit ESC genau über Zirkumflex -->
+        <div class="keyboard-row" style="margin-left: 65px; margin-bottom: 15px;">
             <div class="key" data-key="esc" data-description="Escape-Taste">ESC</div>
+            <div style="width: 10px;"></div>
             <div class="key" data-key="f1" data-description="Funktionstaste F1">F1</div>
             <div class="key" data-key="f2" data-description="Funktionstaste F2">F2</div>
             <div class="key" data-key="f3" data-description="Funktionstaste F3">F3</div>
             <div class="key" data-key="f4" data-description="Funktionstaste F4">F4</div>
+            <div style="width: 10px;"></div>
             <div class="key" data-key="f5" data-description="Funktionstaste F5">F5</div>
             <div class="key" data-key="f6" data-description="Funktionstaste F6">F6</div>
             <div class="key" data-key="f7" data-description="Funktionstaste F7">F7</div>
             <div class="key" data-key="f8" data-description="Funktionstaste F8">F8</div>
+            <div style="width: 10px;"></div>
             <div class="key" data-key="f9" data-description="Funktionstaste F9">F9</div>
             <div class="key" data-key="f10" data-description="Funktionstaste F10">F10</div>
             <div class="key" data-key="f11" data-description="Funktionstaste F11">F11</div>
@@ -259,12 +268,12 @@
                     <div class="key" data-key="pagedown" data-description="Bild abwärts">Bild ↓</div>
                 </div>
                 
-                <!-- Pfeiltasten -->
+                <!-- Pfeiltasten - Korrigierte Anordnung -->
                 <div class="arrow-keys">
-                    <div>
+                    <div style="display: flex; justify-content: center; margin-bottom: 2px;">
                         <div class="key" data-key="up" data-description="Pfeil nach oben">↑</div>
                     </div>
-                    <div>
+                    <div style="display: flex; justify-content: space-between;">
                         <div class="key" data-key="left" data-description="Pfeil nach links">←</div>
                         <div class="key" data-key="down" data-description="Pfeil nach unten">↓</div>
                         <div class="key" data-key="right" data-description="Pfeil nach rechts">→</div>
@@ -272,7 +281,7 @@
                 </div>
             </div>
             
-            <!-- Numblock -->
+            <!-- Numblock - KORRIGIERTE VERSION -->
             <div class="numpad">
                 <div class="numpad-row">
                     <div class="key" data-key="numlock" data-description="Num-Lock">Num</div>
