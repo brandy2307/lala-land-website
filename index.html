@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interaktive Tastaturbelegung</title>
+    <title>LaLa Land Tastaturbelegung</title>
     <style>
         :root {
             --bg-color: #121212;
@@ -302,7 +302,7 @@
 </head>
 <body class="dark-mode">
     <div class="keyboard-container">
-        <h2>Interaktive Tastaturbelegung</h2>
+        <h2>LaLa Land Tastaturbelegung</h2>
         
         <!-- Theme Toggle Switch -->
         <div class="theme-toggle">
@@ -362,8 +362,8 @@
                 <div class="keyboard-row">
                     <div class="key key-tab" data-key="tab" data-description="Tabulator-Taste">Tab</div>
                     <div class="key" data-key="q" data-description="Buchstabe Q">Q</div>
-                    <div class="key" data-key="w" data-description="Buchstabe W">W</div>
-                    <div class="key" data-key="e" data-description="Buchstabe E">E</div>
+                    <div class="key" data-key="w" data-description="|- Vorwärts Laufen|- Bewegung nach vorne|- Drücke zum Springen">W</div>
+                    <div class="key" data-key="e" data-description="|- Benutzen|- Interagieren|- Tür Öffnen">E</div>
                     <div class="key" data-key="r" data-description="Buchstabe R">R</div>
                     <div class="key" data-key="t" data-description="Buchstabe T">T</div>
                     <div class="key" data-key="z" data-description="Buchstabe Z">Z</div>
@@ -379,9 +379,9 @@
                 <!-- ASDF-Reihe -->
                 <div class="keyboard-row">
                     <div class="key key-caps" data-key="caps" data-description="Feststelltaste">Caps</div>
-                    <div class="key" data-key="a" data-description="Buchstabe A">A</div>
-                    <div class="key" data-key="s" data-description="Buchstabe S">S</div>
-                    <div class="key" data-key="d" data-description="Buchstabe D">D</div>
+                    <div class="key" data-key="a" data-description="- Nach Links Laufen|Bewegung nach links">A</div>
+                    <div class="key" data-key="s" data-description="- Rückwärts Laufen|Bewegung nach hinten|Langsam gehen">S</div>
+                    <div class="key" data-key="d" data-description="- Nach Rechts Laufen|Bewegung nach rechts">D</div>
                     <div class="key" data-key="f" data-description="Buchstabe F">F</div>
                     <div class="key" data-key="g" data-description="Buchstabe G">G</div>
                     <div class="key" data-key="h" data-description="Buchstabe H">H</div>
@@ -416,7 +416,7 @@
                     <div class="key key-ctrl" data-key="ctrl1" data-description="Strg-Taste (links)">Ctrl</div>
                     <div class="key key-win" data-key="win" data-description="Windows-Taste">Win</div>
                     <div class="key key-alt" data-key="alt1" data-description="Alt-Taste (links)">Alt</div>
-                    <div class="key key-space" data-key="space" data-description="Leertaste"></div>
+                    <div class="key key-space" data-key="space" data-description="|- Springen|- Handbremse">Leertaste</div>
                     <div class="key key-alt" data-key="alt2" data-description="Alt Gr-Taste (rechts)">Alt</div>
                     <div class="key key-win" data-key="menu" data-description="Kontextmenü-Taste">☰</div>
                     <div class="key key-ctrl" data-key="ctrl2" data-description="Strg-Taste (rechts)">Ctrl</div>
@@ -443,14 +443,14 @@
                     
                     <!-- Obere Pfeiltaste -->
                     <div style="display: flex; justify-content: center; margin-bottom: 2px;">
-                        <div class="key" data-key="up" data-description="Pfeil nach oben">↑</div>
+                        <div class="key" data-key="up" data-description="Pfeil nach oben|Vorwärts bewegen">↑</div>
                     </div>
                     
                     <!-- Untere Pfeiltasten-Reihe -->
                     <div style="display: flex; justify-content: space-between;">
-                        <div class="key" data-key="left" data-description="Pfeil nach links">←</div>
-                        <div class="key" data-key="down" data-description="Pfeil nach unten">↓</div>
-                        <div class="key" data-key="right" data-description="Pfeil nach rechts">→</div>
+                        <div class="key" data-key="left" data-description="Pfeil nach links|Nach links bewegen">←</div>
+                        <div class="key" data-key="down" data-description="Pfeil nach unten|Rückwärts bewegen">↓</div>
+                        <div class="key" data-key="right" data-description="Pfeil nach rechts|Nach rechts bewegen">→</div>
                     </div>
                 </div>
             </div>
@@ -551,8 +551,9 @@
                         if (enterKey) enterKey.classList.add('hovered');
                     }
                     
-                    // Zeige die Beschreibung
-                    descriptionArea.innerHTML = keyName ? `<strong>${keyName}</strong>: ${keyDescription}` : keyDescription;
+                    // Beschreibung mit Zeilenumbrüchen
+                    const formattedDescription = keyDescription.replace(/\|/g, '<br>');
+                    descriptionArea.innerHTML = keyName ? `<strong>${keyName}</strong>: ${formattedDescription}` : formattedDescription;
                 });
                 
                 key.addEventListener('mouseleave', function() {
