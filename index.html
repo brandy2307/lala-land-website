@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Tastaturbelegung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .keyboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .keyboard-row {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 2px;
+        }
+        .keyboard-section {
+            display: flex;
+            flex-direction: row;
+        }
+        .main-keyboard {
+            display: flex;
+            flex-direction: column;
+        }
+        .key {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: black;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            user-select: none;
+            cursor: pointer;
+            margin: 2px;
+            height: 40px;
+            width: 40px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        .key:hover, .key.hovered {
+            background-color: #4a86e8;
+            color: white;
+        }
+        .key-space {
+            width: 250px;
+        }
+        .key-tab {
+            width: 60px;
+        }
+        .key-caps {
+            width: 70px;
+        }
+        .key-backspace {
+            width: 60px;
+        }
+        .key-enter {
+            width: 60px;
+        }
+        .key-enter2 {
+            width: 30px;
+        }
+        .key-shift1 {
+            width: 50px;
+        }
+        .key-shift2 {
+            width: 110px;
+        }
+        .key-ctrl, .key-alt, .key-win {
+            width: 50px;
+        }
+        .key-numpad-0 {
+            width: 82px;
+        }
+        .key-numpad-plus, .key-numpad-enter {
+            height: 84px;
+        }
+        .navigation-block {
+            margin: 0 20px;
+        }
+        .nav-row {
+            display: flex;
+        }
+        .arrow-keys {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 16px;
+        }
+        .numpad {
+            margin-left: 20px;
+        }
+        .numpad-section {
+            display: flex;
+        }
+        .numpad-main {
+            display: flex;
+            flex-direction: column;
+        }
+        .numpad-side {
+            display: flex;
+            flex-direction: column;
+        }
+        .description-area {
+            margin-top: 24px;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            width: 100%;
+            min-height: 50px;
+            color: #333;
+        }
+        .placeholder-text {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="keyboard-container">
+        <h2>Interaktive Tastaturbelegung</h2>
+        
+        <!-- Funktionstasten -->
+        <div class="keyboard-row">
+            <div class="key" data-key="esc" data-description="Escape-Taste">ESC</div>
+            <div class="key" data-key="f1" data-description="Funktionstaste F1">F1</div>
+            <div class="key" data-key="f2" data-description="Funktionstaste F2">F2</div>
+            <div class="key" data-key="f3" data-description="Funktionstaste F3">F3</div>
+            <div class="key" data-key="f4" data-description="Funktionstaste F4">F4</div>
+            <div class="key" data-key="f5" data-description="Funktionstaste F5">F5</div>
+            <div class="key" data-key="f6" data-description="Funktionstaste F6">F6</div>
+            <div class="key" data-key="f7" data-description="Funktionstaste F7">F7</div>
+            <div class="key" data-key="f8" data-description="Funktionstaste F8">F8</div>
+            <div class="key" data-key="f9" data-description="Funktionstaste F9">F9</div>
+            <div class="key" data-key="f10" data-description="Funktionstaste F10">F10</div>
+            <div class="key" data-key="f11" data-description="Funktionstaste F11">F11</div>
+            <div class="key" data-key="f12" data-description="Funktionstaste F12">F12</div>
+        </div>
+        
+        <div class="keyboard-section">
+            <div class="main-keyboard">
+                <!-- Zahlenreihe -->
+                <div class="keyboard-row">
+                    <div class="key" data-key="caret" data-description="Zirkumflex">^</div>
+                    <div class="key" data-key="1" data-description="Ziffer 1 / !">1</div>
+                    <div class="key" data-key="2" data-description="Ziffer 2 / &quot;">2</div>
+                    <div class="key" data-key="3" data-description="Ziffer 3 / §">3</div>
+                    <div class="key" data-key="4" data-description="Ziffer 4 / $">4</div>
+                    <div class="key" data-key="5" data-description="Ziffer 5 / %">5</div>
+                    <div class="key" data-key="6" data-description="Ziffer 6 / &">6</div>
+                    <div class="key" data-key="7" data-description="Ziffer 7 / /">7</div>
+                    <div class="key" data-key="8" data-description="Ziffer 8 / (">8</div>
+                    <div class="key" data-key="9" data-description="Ziffer 9 / )">9</div>
+                    <div class="key" data-key="0" data-description="Ziffer 0 / =">0</div>
+                    <div class="key" data-key="ss" data-description="Scharfes S / ?">ß</div>
+                    <div class="key" data-key="acute" data-description="Akut / Gravis">´</div>
+                    <div class="key key-backspace" data-key="backspace" data-description="Backspace-Taste">⌫</div>
+                </div>
+                
+                <!-- QWERTZ-Reihe -->
+                <div class="keyboard-row">
+                    <div class="key key-tab" data-key="tab" data-description="Tabulator-Taste">Tab</div>
+                    <div class="key" data-key="q" data-description="Buchstabe Q">Q</div>
+                    <div class="key" data-key="w" data-description="Buchstabe W">W</div>
+                    <div class="key" data-key="e" data-description="Buchstabe E">E</div>
+                    <div class="key" data-key="r" data-description="Buchstabe R">R</div>
+                    <div class="key" data-key="t" data-description="Buchstabe T">T</div>
+                    <div class="key" data-key="z" data-description="Buchstabe Z">Z</div>
+                    <div class="key" data-key="u" data-description="Buchstabe U">U</div>
+                    <div class="key" data-key="i" data-description="Buchstabe I">I</div>
+                    <div class="key" data-key="o" data-description="Buchstabe O">O</div>
+                    <div class="key" data-key="p" data-description="Buchstabe P">P</div>
+                    <div class="key" data-key="ue" data-description="Buchstabe Ü">Ü</div>
+                    <div class="key" data-key="plus" data-description="Plus / *">+</div>
+                    <div class="key key-enter" data-key="enter" data-description="Enter-Taste">⏎</div>
+                </div>
+                
+                <!-- ASDF-Reihe -->
+                <div class="keyboard-row">
+                    <div class="key key-caps" data-key="caps" data-description="Feststelltaste">Caps</div>
+                    <div class="key" data-key="a" data-description="Buchstabe A">A</div>
+                    <div class="key" data-key="s" data-description="Buchstabe S">S</div>
+                    <div class="key" data-key="d" data-description="Buchstabe D">D</div>
+                    <div class="key" data-key="f" data-description="Buchstabe F">F</div>
+                    <div class="key" data-key="g" data-description="Buchstabe G">G</div>
+                    <div class="key" data-key="h" data-description="Buchstabe H">H</div>
+                    <div class="key" data-key="j" data-description="Buchstabe J">J</div>
+                    <div class="key" data-key="k" data-description="Buchstabe K">K</div>
+                    <div class="key" data-key="l" data-description="Buchstabe L">L</div>
+                    <div class="key" data-key="oe" data-description="Buchstabe Ö">Ö</div>
+                    <div class="key" data-key="ae" data-description="Buchstabe Ä">Ä</div>
+                    <div class="key" data-key="hash" data-description="Raute / '">#</div>
+                    <div class="key key-enter2" data-key="enter" data-description="Enter-Taste"></div>
+                </div>
+                
+                <!-- YXCV-Reihe -->
+                <div class="keyboard-row">
+                    <div class="key key-shift1" data-key="shift1" data-description="Umschalttaste (links)">Shift</div>
+                    <div class="key" data-key="lt" data-description="Kleiner als / Größer als"><</div>
+                    <div class="key" data-key="y" data-description="Buchstabe Y">Y</div>
+                    <div class="key" data-key="x" data-description="Buchstabe X">X</div>
+                    <div class="key" data-key="c" data-description="Buchstabe C">C</div>
+                    <div class="key" data-key="v" data-description="Buchstabe V">V</div>
+                    <div class="key" data-key="b" data-description="Buchstabe B">B</div>
+                    <div class="key" data-key="n" data-description="Buchstabe N">N</div>
+                    <div class="key" data-key="m" data-description="Buchstabe M">M</div>
+                    <div class="key" data-key="comma" data-description="Komma / ;">,</div>
+                    <div class="key" data-key="dot" data-description="Punkt / :">.</div>
+                    <div class="key" data-key="minus" data-description="Bindestrich / _">-</div>
+                    <div class="key key-shift2" data-key="shift2" data-description="Umschalttaste (rechts)">Shift</div>
+                </div>
+                
+                <!-- Unterste Reihe -->
+                <div class="keyboard-row">
+                    <div class="key key-ctrl" data-key="ctrl1" data-description="Strg-Taste (links)">Ctrl</div>
+                    <div class="key key-win" data-key="win" data-description="Windows-Taste">Win</div>
+                    <div class="key key-alt" data-key="alt1" data-description="Alt-Taste (links)">Alt</div>
+                    <div class="key key-space" data-key="space" data-description="Leertaste"></div>
+                    <div class="key key-alt" data-key="alt2" data-description="Alt Gr-Taste (rechts)">Alt</div>
+                    <div class="key key-win" data-key="menu" data-description="Kontextmenü-Taste">☰</div>
+                    <div class="key key-ctrl" data-key="ctrl2" data-description="Strg-Taste (rechts)">Ctrl</div>
+                </div>
+            </div>
+            
+            <!-- Navigation Bereich -->
+            <div class="navigation-block">
+                <div class="nav-row">
+                    <div class="key" data-key="print" data-description="Druck/S-Abf">Druck</div>
+                    <div class="key" data-key="scroll" data-description="Rollen">Rollen</div>
+                    <div class="key" data-key="pause" data-description="Pause/Untbr">Pause</div>
+                </div>
+                <div class="nav-row">
+                    <div class="key" data-key="insert" data-description="Einfügen">Einfg</div>
+                    <div class="key" data-key="home" data-description="Pos1">Pos1</div>
+                    <div class="key" data-key="pageup" data-description="Bild aufwärts">Bild ↑</div>
+                </div>
+                <div class="nav-row">
+                    <div class="key" data-key="delete" data-description="Entfernen">Entf</div>
+                    <div class="key" data-key="end" data-description="Ende">Ende</div>
+                    <div class="key" data-key="pagedown" data-description="Bild abwärts">Bild ↓</div>
+                </div>
+                
+                <!-- Pfeiltasten -->
+                <div class="arrow-keys">
+                    <div>
+                        <div class="key" data-key="up" data-description="Pfeil nach oben">↑</div>
+                    </div>
+                    <div>
+                        <div class="key" data-key="left" data-description="Pfeil nach links">←</div>
+                        <div class="key" data-key="down" data-description="Pfeil nach unten">↓</div>
+                        <div class="key" data-key="right" data-description="Pfeil nach rechts">→</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Numblock -->
+            <div class="numpad">
+                <div class="numpad-row">
+                    <div class="key" data-key="numlock" data-description="Num-Lock">Num</div>
+                    <div class="key" data-key="numdiv" data-description="Division">/</div>
+                    <div class="key" data-key="nummult" data-description="Multiplikation">*</div>
+                    <div class="key" data-key="numminus" data-description="Subtraktion">-</div>
+                </div>
+                
+                <div class="numpad-section">
+                    <div class="numpad-main">
+                        <div class="numpad-row">
+                            <div class="key" data-key="num7" data-description="Numblock 7">7</div>
+                            <div class="key" data-key="num8" data-description="Numblock 8">8</div>
+                            <div class="key" data-key="num9" data-description="Numblock 9">9</div>
+                        </div>
+                        <div class="numpad-row">
+                            <div class="key" data-key="num4" data-description="Numblock 4">4</div>
+                            <div class="key" data-key="num5" data-description="Numblock 5">5</div>
+                            <div class="key" data-key="num6" data-description="Numblock 6">6</div>
+                        </div>
+                        <div class="numpad-row">
+                            <div class="key" data-key="num1" data-description="Numblock 1">1</div>
+                            <div class="key" data-key="num2" data-description="Numblock 2">2</div>
+                            <div class="key" data-key="num3" data-description="Numblock 3">3</div>
+                        </div>
+                        <div class="numpad-row">
+                            <div class="key key-numpad-0" data-key="num0" data-description="Numblock 0">0</div>
+                            <div class="key" data-key="numcomma" data-description="Numblock Komma">,</div>
+                        </div>
+                    </div>
+                    
+                    <div class="numpad-side">
+                        <div class="key key-numpad-plus" data-key="numplus" data-description="Addition">+</div>
+                        <div class="key key-numpad-enter" data-key="numenter" data-description="Numblock Enter">Enter</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Beschreibungsbereich -->
+        <div class="description-area" id="key-description">
+            <span class="placeholder-text">Bewege den Mauszeiger über eine Taste, um die Belegung zu sehen.</span>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript für die Interaktivität
+        document.addEventListener('DOMContentLoaded', function() {
+            const descriptionArea = document.getElementById('key-description');
+            const placeholderText = "Bewege den Mauszeiger über eine Taste, um die Belegung zu sehen.";
+            const keys = document.querySelectorAll('.key');
+            
+            // Enter-Taste speziell behandeln (zwei Teile)
+            const enterKey = document.querySelector('[data-key="enter"]');
+            const enterKey2 = document.querySelector('.key-enter2');
+            
+            keys.forEach(function(key) {
+                // Hover-Effekt
+                key.addEventListener('mouseenter', function() {
+                    const keyName = this.textContent || '';
+                    const keyDescription = this.getAttribute('data-description') || '';
+                    
+                    // Füge die hover-Klasse hinzu
+                    this.classList.add('hovered');
+                    
+                    // Bei Enter-Taste auch den zweiten Teil hervorheben
+                    if (this.getAttribute('data-key') === 'enter') {
+                        enterKey2.classList.add('hovered');
+                    } else if (this === enterKey2) {
+                        enterKey.classList.add('hovered');
+                    }
+                    
+                    // Zeige die Beschreibung
+                    descriptionArea.innerHTML = keyName ? `<strong>${keyName}</strong>: ${keyDescription}` : keyDescription;
+                });
+                
+                key.addEventListener('mouseleave', function() {
+                    // Entferne die hover-Klasse
+                    this.classList.remove('hovered');
+                    
+                    // Bei Enter-Taste auch vom zweiten Teil entfernen
+                    if (this.getAttribute('data-key') === 'enter') {
+                        enterKey2.classList.remove('hovered');
+                    } else if (this === enterKey2) {
+                        enterKey.classList.remove('hovered');
+                    }
+                    
+                    // Setze die Beschreibung zurück
+                    descriptionArea.innerHTML = '<span class="placeholder-text">' + placeholderText + '</span>';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
