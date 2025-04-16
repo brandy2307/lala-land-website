@@ -5,32 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interaktive Tastaturbelegung</title>
     <style>
+        :root {
+            --bg-color: #f9f9f9;
+            --container-bg: white;
+            --key-bg: #f0f0f0;
+            --key-color: black;
+            --key-border: #ccc;
+            --key-hover-bg: #4a86e8;
+            --key-hover-color: white;
+            --description-bg: #f5f5f5;
+            --description-border: #ddd;
+            --text-color: #333;
+            --placeholder-color: #777;
+        }
+        
+        body.dark-mode {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --key-bg: #2a2a2a;
+            --key-color: #e0e0e0;
+            --key-border: #444;
+            --key-hover-bg: #3a70c2;
+            --key-hover-color: white;
+            --description-bg: #2a2a2a;
+            --description-border: #444;
+            --text-color: #e0e0e0;
+            --placeholder-color: #aaa;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease;
         }
         .keyboard-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             padding: 20px;
-            background-color: white;
+            background-color: var(--container-bg);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             max-width: 1200px;
             margin: 20px auto;
+            position: relative;
+            transition: background-color 0.3s ease;
         }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            background-color: var(--key-bg);
+            color: var(--key-color);
+            border: 1px solid var(--key-border);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--key-hover-bg);
+            color: var(--key-hover-color);
+        }
+        
+        .theme-icon {
+            font-size: 16px;
+        }
+        
         h2 {
             margin-bottom: 20px;
-            color: #333;
+            color: var(--text-color);
             align-self: center;
+            transition: color 0.3s;
         }
         .keyboard-row {
             display: flex;
             flex-direction: row;
             margin-bottom: 2px;
+            transition: margin 0.3s ease;
         }
         .keyboard-section {
             display: flex;
@@ -45,9 +105,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f0f0f0;
-            color: black;
-            border: 1px solid #ccc;
+            background-color: var(--key-bg);
+            color: var(--key-color);
+            border: 1px solid var(--key-border);
             border-radius: 4px;
             font-size: 13px;
             font-weight: bold;
@@ -57,11 +117,11 @@
             height: 40px;
             width: 40px;
             box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
+            transition: all 0.2s ease, background-color 0.3s, color 0.3s, border-color 0.3s;
         }
         .key:hover, .key.hovered {
-            background-color: #4a86e8;
-            color: white;
+            background-color: var(--key-hover-bg);
+            color: var(--key-hover-color);
         }
         .key-space {
             width: 250px;
@@ -128,22 +188,30 @@
         .description-area {
             margin-top: 24px;
             padding: 16px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--description-border);
             border-radius: 4px;
-            background-color: #f5f5f5;
+            background-color: var(--description-bg);
             width: 100%;
             min-height: 50px;
-            color: #333;
+            color: var(--text-color);
             align-self: center;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
         }
         .placeholder-text {
-            color: #777;
+            color: var(--placeholder-color);
+            transition: color 0.3s;
         }
     </style>
 </head>
 <body>
     <div class="keyboard-container">
         <h2>Interaktive Tastaturbelegung</h2>
+        
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="theme-toggle">
+            <span class="theme-icon" id="theme-icon">☀️</span>
+            <span id="theme-text">Dark Mode</span>
+        </button>
         
         <!-- Funktionstasten mit ESC genau über Zirkumflex -->
         <div class="keyboard-row" style="margin-left: 65px; margin-bottom: 15px;">
@@ -337,6 +405,23 @@
             // Enter-Taste speziell behandeln (zwei Teile)
             const enterKey = document.querySelector('[data-key="enter"]');
             const enterKey2 = document.querySelector('.key-enter2');
+            
+            // Theme Toggle Funktionalität
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.textContent = '🌙';
+                    themeText.textContent = 'Light Mode';
+                } else {
+                    themeIcon.textContent = '☀️';
+                    themeText.textContent = 'Dark Mode';
+                }
+            });
             
             keys.forEach(function(key) {
                 // Hover-Effekt
