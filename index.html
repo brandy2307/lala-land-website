@@ -6,28 +6,14 @@
     <title>Interaktive Tastaturbelegung</title>
     <style>
         :root {
-            --bg-color: #f9f9f9;
-            --container-bg: white;
-            --key-bg: #f0f0f0;
-            --key-color: black;
-            --key-border: #ccc;
-            --key-hover-bg: #4a86e8;
-            --key-hover-color: white;
-            --description-bg: #f5f5f5;
-            --description-border: #ddd;
-            --text-color: #333;
-            --placeholder-color: #777;
-        }
-        
-        body.dark-mode {
             --bg-color: #121212;
-            --container-bg: #1e1e1e;
+            --container-bg: rgba(30, 30, 30, 0.85); /* Container-Hintergrund mit Transparenz */
             --key-bg: #2a2a2a;
             --key-color: #e0e0e0;
             --key-border: #444;
             --key-hover-bg: #3a70c2;
             --key-hover-color: white;
-            --description-bg: #2a2a2a;
+            --description-bg: rgba(42, 42, 42, 0.85); /* Beschreibungsfeld mit Transparenz */
             --description-border: #444;
             --text-color: #e0e0e0;
             --placeholder-color: #aaa;
@@ -38,20 +24,46 @@
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            transition: background-color 0.3s ease;
+            min-height: 100vh;
         }
+        
         .keyboard-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             padding: 20px;
-            background-color: var(--container-bg);
+            background-color: var(--container-bg); /* Transparenter Container */
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             max-width: 1200px;
             margin: 20px auto;
             position: relative;
             transition: background-color 0.3s ease;
+            
+            /* Hintergrundbild nur für den Container */
+            background-image: url('wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden; /* Verhindert, dass das Bild über den Container hinausragt */
+        }
+        
+        /* Overlay für bessere Lesbarkeit über dem Hintergrundbild */
+        .keyboard-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(30, 30, 30, 0.7); /* Dunkle Überlagerung */
+            z-index: 0;
+        }
+        
+        /* Alle direkten Container-Kinder über die Überlagerung bringen */
+        .keyboard-container > * {
+            position: relative;
+            z-index: 1;
         }
         
         .theme-toggle {
@@ -66,6 +78,7 @@
             user-select: none;
             gap: 10px;
             transition: color 0.3s;
+            z-index: 2; /* Sicherstellen, dass der Toggle über allem liegt */
         }
         
         .toggle-switch {
@@ -139,6 +152,7 @@
             color: var(--text-color);
             align-self: center;
             transition: color 0.3s;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Textschatten für bessere Lesbarkeit */
         }
         .keyboard-row {
             display: flex;
@@ -170,12 +184,14 @@
             margin: 2px;
             height: 40px;
             width: 40px;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
             transition: all 0.2s ease, background-color 0.3s, color 0.3s, border-color 0.3s;
         }
         .key:hover, .key.hovered {
             background-color: var(--key-hover-bg);
             color: var(--key-hover-color);
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
         .key-space {
             width: 250px;
@@ -485,9 +501,9 @@
                     
                     // Bei Enter-Taste auch den zweiten Teil hervorheben
                     if (this.getAttribute('data-key') === 'enter') {
-                        enterKey2.classList.add('hovered');
+                        if (enterKey2) enterKey2.classList.add('hovered');
                     } else if (this === enterKey2) {
-                        enterKey.classList.add('hovered');
+                        if (enterKey) enterKey.classList.add('hovered');
                     }
                     
                     // Zeige die Beschreibung
@@ -500,9 +516,9 @@
                     
                     // Bei Enter-Taste auch vom zweiten Teil entfernen
                     if (this.getAttribute('data-key') === 'enter') {
-                        enterKey2.classList.remove('hovered');
+                        if (enterKey2) enterKey2.classList.remove('hovered');
                     } else if (this === enterKey2) {
-                        enterKey.classList.remove('hovered');
+                        if (enterKey) enterKey.classList.remove('hovered');
                     }
                     
                     // Setze die Beschreibung zurück
