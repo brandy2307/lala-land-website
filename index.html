@@ -58,26 +58,80 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            padding: 8px 12px;
-            background-color: var(--key-bg);
-            color: var(--key-color);
-            border: 1px solid var(--key-border);
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: background-color 0.3s, color 0.3s;
+            font-size: 14px;
+            color: var(--text-color);
+            cursor: pointer;
+            user-select: none;
+            gap: 10px;
+            transition: color 0.3s;
         }
         
-        .theme-toggle:hover {
-            background-color: var(--key-hover-bg);
-            color: var(--key-hover-color);
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        .dark-mode .toggle-slider {
+            background-color: #3a70c2;
+        }
+        
+        .dark-mode .toggle-slider:before {
+            transform: translateX(26px);
         }
         
         .theme-icon {
             font-size: 16px;
+            transition: opacity 0.3s;
+        }
+        
+        .sun-icon {
+            opacity: 0.5;
+        }
+        
+        .moon-icon {
+            opacity: 1;
+        }
+        
+        .dark-mode .sun-icon {
+            opacity: 0.5;
+        }
+        
+        .dark-mode .moon-icon {
+            opacity: 1;
         }
         
         h2 {
@@ -203,15 +257,19 @@
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
     <div class="keyboard-container">
         <h2>Interaktive Tastaturbelegung</h2>
         
-        <!-- Theme Toggle Button -->
-        <button class="theme-toggle" id="theme-toggle">
-            <span class="theme-icon" id="theme-icon">☀️</span>
-            <span id="theme-text">Dark Mode</span>
-        </button>
+        <!-- Theme Toggle Switch -->
+        <div class="theme-toggle">
+            <span class="theme-icon sun-icon">☀️</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="theme-checkbox" checked>
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="theme-icon moon-icon">🌙</span>
+        </div>
         
         <!-- Funktionstasten mit ESC genau über Zirkumflex -->
         <div class="keyboard-row" style="margin-left: 65px; margin-bottom: 15px;">
@@ -407,20 +465,13 @@
             const enterKey2 = document.querySelector('.key-enter2');
             
             // Theme Toggle Funktionalität
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = document.getElementById('theme-icon');
-            const themeText = document.getElementById('theme-text');
+            const themeCheckbox = document.getElementById('theme-checkbox');
             
-            themeToggle.addEventListener('click', function() {
+            // Dark Mode ist bereits standardmäßig aktiviert (über die Klasse im body)
+            // und die Checkbox ist initial angehakt (checked)
+            
+            themeCheckbox.addEventListener('change', function() {
                 document.body.classList.toggle('dark-mode');
-                
-                if (document.body.classList.contains('dark-mode')) {
-                    themeIcon.textContent = '🌙';
-                    themeText.textContent = 'Light Mode';
-                } else {
-                    themeIcon.textContent = '☀️';
-                    themeText.textContent = 'Dark Mode';
-                }
             });
             
             keys.forEach(function(key) {
