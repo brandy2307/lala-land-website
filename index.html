@@ -223,9 +223,16 @@
         .key-numpad-0 {
             width: 82px;
         }
-        .key-numpad-plus, .key-numpad-enter {
-            height: 84px;
+        
+        /* Angepasste Höhe für die + und Enter Tasten im Numblock */
+        .key-numpad-plus {
+            height: 86px; /* Genau zwei Tastenreihen + ein Abstand */
         }
+        
+        .key-numpad-enter {
+            height: 86px; /* Genau zwei Tastenreihen + ein Abstand */
+        }
+        
         .navigation-block {
             margin: 0 20px;
         }
@@ -246,21 +253,35 @@
         
         .numpad {
             margin-left: 20px;
+            margin-top: 0; /* Entfernt ungewollten oberen Abstand */
         }
-        .numpad-row {
-            display: flex;
-        }
+        
+        /* Neue Numblock-Struktur */
         .numpad-section {
             display: flex;
         }
+        
         .numpad-main {
             display: flex;
             flex-direction: column;
         }
+        
+        .numpad-row {
+            display: flex;
+            margin-bottom: 2px; /* Konsistenter Abstand zwischen Reihen */
+        }
+        
         .numpad-side {
             display: flex;
             flex-direction: column;
+            margin-left: 2px; /* Abstand zwischen Hauptnumblock und Seitentasten */
         }
+        
+        /* Fixes für die vertikale Ausrichtung des Numblocks zur Haupttastatur */
+        .numpad-spacer {
+            height: 2px; /* Feinjustierung der vertikalen Ausrichtung */
+        }
+        
         .description-area {
             margin-top: 24px;
             padding: 16px;
@@ -434,8 +455,12 @@
                 </div>
             </div>
             
-            <!-- Numblock - KORRIGIERTE VERSION -->
+            <!-- Numblock - ANGEPASSTE VERSION -->
             <div class="numpad">
+                <!-- Kleiner Abstandshalter für präzise vertikale Ausrichtung -->
+                <div class="numpad-spacer"></div>
+                
+                <!-- Oberste Reihe des Numblocks -->
                 <div class="numpad-row">
                     <div class="key" data-key="numlock" data-description="Num-Lock">Num</div>
                     <div class="key" data-key="numdiv" data-description="Division">/</div>
@@ -443,29 +468,38 @@
                     <div class="key" data-key="numminus" data-description="Subtraktion">-</div>
                 </div>
                 
+                <!-- Hauptteil des Numblocks mit Seitentasten -->
                 <div class="numpad-section">
                     <div class="numpad-main">
+                        <!-- 7-8-9 Reihe -->
                         <div class="numpad-row">
                             <div class="key" data-key="num7" data-description="Numblock 7">7</div>
                             <div class="key" data-key="num8" data-description="Numblock 8">8</div>
                             <div class="key" data-key="num9" data-description="Numblock 9">9</div>
                         </div>
+                        
+                        <!-- 4-5-6 Reihe -->
                         <div class="numpad-row">
                             <div class="key" data-key="num4" data-description="Numblock 4">4</div>
                             <div class="key" data-key="num5" data-description="Numblock 5">5</div>
                             <div class="key" data-key="num6" data-description="Numblock 6">6</div>
                         </div>
+                        
+                        <!-- 1-2-3 Reihe -->
                         <div class="numpad-row">
                             <div class="key" data-key="num1" data-description="Numblock 1">1</div>
                             <div class="key" data-key="num2" data-description="Numblock 2">2</div>
                             <div class="key" data-key="num3" data-description="Numblock 3">3</div>
                         </div>
+                        
+                        <!-- 0-Komma Reihe -->
                         <div class="numpad-row">
                             <div class="key key-numpad-0" data-key="num0" data-description="Numblock 0">0</div>
                             <div class="key" data-key="numcomma" data-description="Numblock Komma">,</div>
                         </div>
                     </div>
                     
+                    <!-- Rechte Seite des Numblocks: Plus und Enter -->
                     <div class="numpad-side">
                         <div class="key key-numpad-plus" data-key="numplus" data-description="Addition">+</div>
                         <div class="key key-numpad-enter" data-key="numenter" data-description="Numblock Enter">Enter</div>
